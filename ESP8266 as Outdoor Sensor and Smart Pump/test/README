@@ -1,0 +1,61 @@
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+#include <coap-simple.h>
+#include <WiFiUdp.h>
+#include <DHT.h>
+const char *ssid = "P23-T4";
+const char *password = "88888888";
+IPAddress ip;
+const int coapPort = 5683; // Default CoAP port
+const String resourcePath = "dht11";
+WiFiUDP udp;
+Coap coap(udp);
+// Chân DHT11
+#define DHTPIN D5  // Sử dụng chân GPIO2
+
+// Khởi tạo đối tượng DHT
+DHT dht(DHTPIN, DHT11);
+float temperature;
+float humidity;
+
+void setup() {
+  Serial.begin(9600);
+ip = IPAddress(192, 168, 23, 217);
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+
+  // Initialize CoAP
+ coap.start();
+}
+
+void loop() {
+  // Đọc giá trị từ cảm biến DHT
+  humidity = dht.readHumidity();
+  temperature = dht.readTemperature();
+  unsigned long cur_mil = millis();
+  // Kiểm tra dữ liệu đóng từ cảm biến có chính xác không?
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor");
+    return;
+  }
+  char msg[50];
+  
+  // Read sensor data (replace this with your actual data reading code)
+ // float sensorValue = analogRead(A0) * 3.3 / 1023;
+
+  // Convert the sensor value to a string
+  //String payload = String(sensorValue);
+//String payload = "hello";
+snprintf(msg, sizeof(msg), "{\n\"temperature\": %.1f,\n\"humidity\": %.1f\n}", temperature, humidity);
+  // Send CoAP PUT request to update the dht11 resource
+  coap.put(ip, coapPort, resourcePath.c_str(), msg);
+   Serial.println(temperature);
+//Serial.println(payload);
+  // Wait for a moment before sending the next request
+  delay(5000); // 5 seconds
+}
