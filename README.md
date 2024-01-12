@@ -4,5 +4,5 @@ Architectures and communication protocols in IOT
 Smart Home Project  
 Group 07  
 Agent 007  
-MQTT for Indoor Sensor and Smart Socket.  
-CoAP for Outdoor Sensor and Smart Pump.
+MQTT for the Indoor Sensor and the Smart Socket.  
+CoAP for the Outdoor Sensor and the Smart Pump.
