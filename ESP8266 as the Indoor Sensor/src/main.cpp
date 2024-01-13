@@ -14,9 +14,9 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 uint32_t delayMS;
 
 // MQTT Credentials
-const char *ssid = "Galaxy"; // Setting your AP SSID
-const char *password = "8910jqka";       // Setting your AP password
-const char *mqttServer = "192.168.109.23";   // MQTT URL
+const char *ssid = "your AP SSID"; // Setting your AP SSID
+const char *password = "your AP password";       // Setting your AP password
+const char *mqttServer = "your Mosquitto IP";    // MQTT URL
 const char *mqttUserName = "";            // MQTT Username
 const char *mqttPwd = "";                 // MQTT Password
 const char *clientID = "";                // Client ID
@@ -30,7 +30,7 @@ String msgStr = ""; // MQTT message buffer
 
 float temp, hum;
 
-// Setting up wifi and mqtt client
+// Setting up wifi and MQTT client
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -69,7 +69,7 @@ void reconnect()
   }
 }
 
-// subscribe call back
+// Subscribe call back
 void callback(char *topic, byte *payload, int length)
 {
   Serial.print("Message arrived in topic: ");
@@ -135,7 +135,7 @@ void loop()
 
     Serial.print(F("Temperature: "));
     temp = random(10, 40);
-    Serial.print(temp);
+    Serial.print(temp); 
     Serial.println(F("°C"));
 
     Serial.print(F("Humidity: "));
