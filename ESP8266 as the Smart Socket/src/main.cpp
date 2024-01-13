@@ -3,12 +3,13 @@
 #include <ArduinoJson.h>  // Library for Parsing JSON
 
 // Defining Pins
-//#define LED 2 for ESP8266 v3
-#define LED D0 //for ESP8266 v2
+// #define LED 2 // For ESP8266 v3
+#define LED D0 // For ESP8266 v2
+
 // MQTT Credentials
-const char *ssid = "Galaxy"; // Setting your AP SSID
-const char *password = "8910jqka";       // Setting your AP password
-const char *mqttServer = "192.168.109.23";   // MQTT URL
+const char *ssid = "your AP SSID"; // Setting your AP SSID
+const char *password = "your AP password";       // Setting your AP password
+const char *mqttServer = "your Mosquitto IP";    // MQTT URL
 const char *mqttUserName = "";            // MQTT username
 const char *mqttPwd = "";                 // MQTT password
 const char *clientID = "";                // Client ID
@@ -22,7 +23,7 @@ String msgStr = ""; // MQTT message buffer
 
 float temp, hum;
 
-// Setting up wifi and mqtt client
+// Setting up wifi and MQTT client
 WiFiClient espClient;
 PubSubClient client(espClient);
 
