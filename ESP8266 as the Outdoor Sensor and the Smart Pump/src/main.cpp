@@ -8,13 +8,17 @@
 #define LEDP 2
 #define DHTPIN D5
 
-const char *ssid = "Galaxy";
-const char *password = "8910jqka";
+const char *ssid = "your AP SSID";  // Setting your AP SSID
+const char *password = "your AP password";  // Setting your AP password
 const int coapPort = 5684; // Default CoAP port
 const String resourcePath = "ledstate";
+
+// Parameters for using non-blocking delay
 unsigned long interval = 5000;
-const int interval2 = 10000;
 unsigned long previousMillis = 0;
+
+// Parameters for using turn off delay
+const int interval2 = 10000;
 unsigned long previousMillis2 = 0;
 unsigned long currentMillis2 = 0;
 
@@ -22,6 +26,7 @@ DHT dht(DHTPIN, DHT11);
 float temperature;
 float humidity;
 int count = 1;
+
 // CoAP client response callback
 void callback_response(CoapPacket &packet, IPAddress ip, int port);
 
@@ -73,7 +78,7 @@ void callback_time(CoapPacket &packet, IPAddress ip, int port)
 {
   Serial.println("Time");
 
-  // send response
+  // Send response
   char p[packet.payloadlen + 1];
   memcpy(p, packet.payload, packet.payloadlen);
   p[packet.payloadlen] = NULL;
@@ -126,7 +131,7 @@ void setup()
   Serial.println("Setup Response Callback");
   coap.response(callback_response);
 
-  // start coap server/client
+  // Start CoAP server/client
   coap.start();
 }
 
@@ -171,10 +176,9 @@ void loop()
     char msg[100];
     snprintf(msg, sizeof(msg), "{\"state\": %s,\"temperature\": %.1f,\"humidity\": %.1f}", responsePayload.c_str(), temperature, humidity);
     Serial.println(msg);
-    coap.put(IPAddress(192, 168, 109, 23), coapPort, resourcePath.c_str(), msg);
+    coap.put(IPAddress(192, 168, 150, 23), coapPort, resourcePath.c_str(), msg);
     Serial.println("Send to HC");
     delay(50);
   }
-  // delay(interval2);
   coap.loop();
 }
