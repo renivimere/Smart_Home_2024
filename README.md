@@ -44,5 +44,5 @@ This Smart Home Project aims to create an intelligent home automation system usi
 - Adjust the file names in the `scripts` list if necessary.
 - Customize the project according to your specific device configurations and preferences.
 
-Feel free to explore and enhance the Smart Home Project for a more personalized and efficient home automation experience!
+Feel free to explore and enhance the Smart Home Project for a more personalized and efficient home automation experience!  
 Thank you!!!
