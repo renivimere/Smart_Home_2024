@@ -2,7 +2,8 @@
 EE4348 HUST   
 Architectures and communication protocols in IOT   
 Group 07  
-Agent 007  
+Agent 007 
+Le Minh Quan & Le Doan Dat  
 ## Overview
 This Smart Home Project aims to create an intelligent home automation system using a combination of MQTT (Message Queuing Telemetry Transport), CoAP (Constrained Application Protocol), and ThingsBoard platform. The project facilitates communication between various devices, such as sensors and controllers, allowing seamless control and monitoring of the smart home environment.
 
