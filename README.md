@@ -30,9 +30,9 @@ This Smart Home Project aims to create an intelligent home automation system usi
 
 ## Setup Instructions
 1. Clone the repository to your local machine.
-2. Install required Python libraries using `pip install -r requirements.txt`.
+2. Install required Python libraries.  
 3. Connect the DHT11 sensor and ESP8266 to your Home Center.
-4. Update the SSID and password, change the IP, and configure other network settings as needed..
+4. Update the SSID and password, change the IP, and configure other network settings as needed.  
 5. Update the `THINGSBOARD_HOST` and `ACCESS_TOKEN` variables in the scripts with your ThingsBoard details.
 6. Execute `MQTT_Windows_HC.py` and `CoAP_Windows_HC.py` scripts on your Home Center using `HC_Running.py`.
 7. Flash all ESP8266 code to your ESP8266 board using the Arduino IDE.
